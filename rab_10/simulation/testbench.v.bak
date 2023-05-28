@@ -1,0 +1,26 @@
+`timescale 1ns/1ns
+module testbench;
+	reg clk;
+	reg [9:0] addr;
+	wire [7:0] data_out;
+	wire [9:0] addr_out;
+	integer i;
+	
+	ROM dut (clk, addr, data_out, addr_out);
+	
+initial
+	begin
+		clk = 0;
+		#1024;
+		clk = 0;
+	end
+	
+	always #2 clk = ~clk;
+		initial
+			#4096 $finish;
+
+	initial
+		$monitor("clk=%b addr=%b data_out=%b addr_out=%b", clk, addr, data_out, addr_out);
+	initial
+		$dumpvars;
+endmodule

@@ -1,0 +1,302 @@
+module lab1_1 
+#(
+	parameter DATA_WIDTH = 4,
+	parameter ADDR_WIDTH = 2
+)
+
+(
+	input clk,
+	input [6:0] SW,
+	output [3:0] LEDR
+);
+
+	reg [3:0] w_we; // выход дешифратора
+	reg [3:0] mux_out; // выход мультиплексора
+	wire [(DATA_WIDTH-1):0] reg0, reg1, reg2, reg3, reg4, reg5, reg6, reg7, reg8, reg9, reg10,
+	reg11, reg12, reg13, reg14, reg15, reg16, reg17, reg18, reg19, reg20, reg21, reg22, reg23, 
+	reg24, reg25, reg26, reg27, reg28, reg29, reg30, reg31; // выход 32-х регистров
+	
+	//Дешифратор
+	always @(SW[6:4])
+		begin
+			if (SW[6])
+				case (SW[5:4])
+					2'b00 : w_we = 4'b0001;
+					2'b01 : w_we = 4'b0010;
+					2'b10 : w_we = 4'b0100;
+					2'b11 : w_we = 4'b1000;
+					default : w_we = 4'b0000;
+				endcase
+			else
+					w_we = 4'b0000;
+		end
+		
+	//Регистры
+	D_reg_4 register0
+	(
+	.ena(w_we[0]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg0)
+	),
+	
+	register1
+	(
+	.ena(w_we[1]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg1)
+	),
+	
+	register2
+	(
+	.ena(w_we[2]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg2)
+	),
+	
+	register3
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register4
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg4)
+	),
+	
+	register5
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg5)
+	),
+	
+	register6
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg6)
+	),
+	
+	register7
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg7)
+	),
+	
+	register8
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg8)
+	),
+	
+	register9
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg9)
+	),
+	
+	register10
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg10)
+	),
+	
+	register11
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg11)
+	),
+	
+	register12
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg12)
+	),
+	
+	register13
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg13)
+	),
+	
+	register14
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg14)
+	),
+	
+	register15
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg15)
+	),
+	
+	register16
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg16)
+	),
+	
+	register17
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg17)
+	),
+	
+	register18
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg18)
+	),
+	
+	register19
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg19)
+	),
+	
+	register20
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register21
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register22
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register23
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register24
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register25
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register26
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register27
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register28
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	
+	register29
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	register30
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	),
+	register31
+	(
+	.ena(w_we[3]),
+	.clk(clk),
+	.d(SW[3:0]),
+	.q(reg3)
+	);
+	
+			
+	//Мультиплексор
+	always @(SW[5:4], reg0, reg1, reg2, reg3)
+		case (SW[5:4])
+			2'b00 : mux_out = reg0;
+			2'b01 : mux_out = reg1;
+			2'b10 : mux_out = reg2;
+			2'b11 : mux_out = reg3;
+			default : mux_out = 4'b0000;
+		endcase
+	assign LEDR = mux_out;
+	
+endmodule
+	
